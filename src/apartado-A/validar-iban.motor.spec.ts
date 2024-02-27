@@ -1,5 +1,5 @@
-import { aQueBancoPertenece, esValidoElIBAN, estáBienFormadoElIBAN, obtenerCodigoDeSucursal, obtenerDigitosDeControlCCC, obtenerNumeroDeCuentaCCC } from "./validar-iban.motor";
-import { patronIBAN } from "./validar-iban.model";
+import { aQueBancoPertenece, esValidoElIBAN, estáBienFormadoElIBAN, obtenerCodigoDeSucursal, obtenerCodigoEntidad, obtenerDigitosDeControlCCC, obtenerNumeroDeCuentaCCC } from "./validar-iban.motor";
+import { Banco, patronIBAN } from "./validar-iban.model";
 import { codigoDeBancos } from "./codigosDeBancos";
 
 
@@ -37,7 +37,8 @@ describe('aQueBancoPertenece', () => {
     ["ES1000492352082414205416", "Banco Santander"],
     ["ES6621000418401234567891", "Caixabank"]
   ])('El IBAN %s debe retornar %s', (iban : string, expected: string) => {
-    expect(aQueBancoPertenece(iban, patronIBAN, codigoDeBancos)).toBe(expected)
+    const banco : Banco = obtenerCodigoEntidad(iban, patronIBAN, codigoDeBancos)
+    expect(aQueBancoPertenece(banco)).toBe(expected)
   })
 })
 

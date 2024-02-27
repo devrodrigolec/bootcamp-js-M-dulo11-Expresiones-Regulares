@@ -1,8 +1,11 @@
-import { IBAN } from "./validar-iban.model";
+import { validaIBANEnElDOM } from "./valida-iban.ui";
 
+document.addEventListener("DOMContentLoaded", () => {
+  const formulario = document.querySelector("#formulario");
 
-export const validarIBAN = ( ibanAValidar : string ):IBAN => {
-  //TODO: Implementar funcion
-
-  throw new Error('Función no implementada')
-}
+  if (formulario && formulario instanceof HTMLFormElement) {
+    formulario.addEventListener("submit", validaIBANEnElDOM);
+  } else {
+    throw new Error("No se encontró el formulario");
+  }
+});

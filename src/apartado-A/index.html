@@ -12,20 +12,20 @@
     <h1>Validar IBAN Bancos Españoles</h1>
   </header>
   <main class="main">
-    <form id="formulario">
+    <form id="formulario" class="formulario">
       <label for="input-iban">Introduzca el IBAN</label>
       <input type="text" name="input-iban" id="input-iban" required>
       <button type="submit" class="boton">Validar</button>
     </form>
     <div id='div-resultados' class="div-resultados">
-      <p>El IBAN está bien formado: <span id="esta-bien-formado"></span></p>
-      <p>El IBAN es válido: <span id="es-valido"></span></p>
-      <p>Banco: <span id="banco"></span></p>
-      <p>Código Sucursal: <span id="codigo-sucursal"></span></p>
-      <p>Dígito de control: <span id="digito-control"></span></p>
-      <p>Número de cuenta: <span id="numero-cuenta"></span></p>
+      <p>El IBAN está bien formado: <span class="span"  id="esta-bien-formado"></span></p>
+      <p>El IBAN es válido: <span class="span" id="es-valido"></span></p>
+      <p>Banco: <span class="span" id="banco"></span></p>
+      <p>Código Sucursal: <span class="span" id="codigo-sucursal"></span></p>
+      <p>Dígito de control: <span class="span" id="digito-control"></span></p>
+      <p>Número de cuenta: <span class="span" id="numero-cuenta"></span></p>
     </div>
   </main>
-  
+  <script type="module" src="./validar-iban.ts"></script>
 </body>
 </html>

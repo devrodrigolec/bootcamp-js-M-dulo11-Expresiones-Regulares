@@ -18,6 +18,11 @@ body{
   align-items: center;
   background-color: antiquewhite;
 }
+
+.formulario input {
+  width: 400px;
+}
+
 .div-resultados {
   width: 90%;
   padding: 20px;;
@@ -25,13 +30,21 @@ body{
 }
 .div-resultados p {
   font-weight: bold;
+  letter-spacing: 1px;
+  
 }
 .div-resultados p span {
   color: white;
-  background-color: blue;
+  padding: 5px;
+
 }
 .boton {
   background-color: skyblue;
 }
-
+.correcto {
+  background-color: blue;
+}
+.incorrecto {
+  background-color: red;
+}
 

@@ -1,0 +1,37 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #a39f9f;
+}
+
+.header {
+  text-align: center;
+}
+.main {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: antiquewhite;
+}
+.div-resultados {
+  width: 90%;
+  padding: 20px;;
+  
+}
+.div-resultados p {
+  font-weight: bold;
+}
+.div-resultados p span {
+  color: white;
+  background-color: blue;
+}
+.boton {
+  background-color: skyblue;
+}
+
+

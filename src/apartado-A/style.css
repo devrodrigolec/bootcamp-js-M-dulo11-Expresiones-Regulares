@@ -17,6 +17,7 @@ body{
   flex-direction: column;
   align-items: center;
   background-color: antiquewhite;
+  border-radius: 10px;
 }
 
 .formulario input {
@@ -39,7 +40,8 @@ body{
 
 }
 .boton {
-  background-color: skyblue;
+  background-color: greenyellow;
+  cursor: pointer;
 }
 .correcto {
   background-color: blue;

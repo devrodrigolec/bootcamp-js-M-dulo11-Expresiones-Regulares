@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../normalize.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Extraer Imágenes</title>
+</head>
+<body>
+  <header>
+    <h1>Bienvenido a Extraer Imágenes</h1>
+  </header>
+  <main>
+    <form id="formulario" class="formulario">
+      <label for="text-area">Pega aquí el HTML 👇</label>
+      <textarea name="text-area" id="text-area" cols="100" rows="15"></textarea>
+      <button type="submit">Extraer Imágenes</button>
+    </form>
+    <div id="div-resultados" class="div-resultados">
+    </div>
+  </main>
+  <script type="module" src="./extraer-imagenes.ts"></script>
+</body>
+</html>

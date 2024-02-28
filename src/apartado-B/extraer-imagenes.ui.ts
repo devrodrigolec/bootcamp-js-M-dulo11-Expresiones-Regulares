@@ -1,31 +1,37 @@
 import {
   extraerEtiquetasIMG,
-  extraerLinksImg,
+  extraerLinks,
   extraerTexto,
+  extrarSRC,
 } from "./extraer-imagenes.control";
-import { patronEtiquetaImg, patronLinkImg } from "./extraer-imagenes.model";
+import {
+  patronEtiquetaImg,
+  patronLinkImg,
+  patronSRC,
+} from "./extraer-imagenes.model";
 
 const crearParrafo = (texto: string): HTMLParagraphElement => {
   const parrafo = document.createElement("p");
-  const ancla = document.createElement('a')
-  ancla.href = texto
-  ancla.textContent = `${texto} 👈`
-  ancla.target = '_blank'
-  parrafo.classList.add('resultado')
+  const ancla = document.createElement("a");
+  ancla.href = texto;
+  ancla.textContent = `${texto} 👈`;
+  ancla.target = "_blank";
+  parrafo.classList.add("resultado");
   parrafo.appendChild(ancla);
   return parrafo;
 };
 
-const pintarResultados = (linksArray: RegExpMatchArray[]) => {
+//@ts-ignore
+const pintarResultados = (linksArray: string[]) => {
   const divResultados = document.querySelector("#div-resultados");
 
   if (divResultados && divResultados instanceof HTMLDivElement) {
     linksArray.forEach((link) => {
-      const parrafo = crearParrafo(link[0].toString());
+      const parrafo = crearParrafo(link);
       divResultados.appendChild(parrafo);
     });
   } else {
-    throw new Error ('No se encontró div-resultados')
+    throw new Error("No se encontró div-resultados");
   }
 };
 
@@ -41,12 +47,22 @@ export const gestionarExtraerImagenes = (event: Event) => {
     texto,
     patronEtiquetaImg
   );
-
   if (etiquetasImgArray.length === 0) {
-    alert("No se encontró ninguna imagen en el HTML");
-    throw new Error("No hay imágenes en el HTML");
+    alert("No hay etiquetas img en el HTML");
+    throw new Error("No hay etiquetas IMG en el HTML");
   }
-  const linksImgArray = extraerLinksImg(etiquetasImgArray, patronLinkImg);
+  const arraySRC = extrarSRC(etiquetasImgArray, patronSRC);
+  if (arraySRC.length === 0) {
+    alert("No hay ningun SRC en las etiquetas IMG");
+    throw new Error("No hay SRC en las etiquetas IMG");
+  }
 
-  pintarResultados(linksImgArray);
+  const links = extraerLinks(arraySRC, patronLinkImg);
+  if (links.length === 0) {
+    alert(
+      "No hay links válidos para mostrar, los links deben terminar en formato .jpg, .png, .webp, .gif, etc..."
+    );
+    throw new Error("No hay imágenes con formato válido");
+  }
+  pintarResultados(links);
 };

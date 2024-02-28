@@ -13,28 +13,38 @@ export const extraerEtiquetasIMG = (
   texto: string,
   patron: RegExp
 ): string[] => {
-  const respuesta = texto.match(patron);
+  let respuestaArray: string[] = [];
+  const respuesta: RegExpMatchArray | null = texto.match(patron);
   if (respuesta) {
-    return respuesta;
-  } else {
-    throw new Error("No se encontró ninguna etiqueta img");
+    respuesta.forEach((resp) => {
+      respuestaArray = [...respuestaArray, resp];
+    });
   }
+
+  return respuestaArray;
 };
 
-export const extraerLinksImg = (
-  arrayEtiquetas: string[],
-  patronLinkImg: RegExp
-): RegExpMatchArray[] => {
-  const linkImagenesArray: RegExpMatchArray[] = arrayEtiquetas.map(
-    (etiqueta) => {
-      const link = etiqueta.match(patronLinkImg);
-      if (link) {
-        return link;
-      } else {
-        throw new Error("Error al extraer link de imagenes");
-      }
+export const extrarSRC = (arrayEtiquetasImg: string[], patronSRC: RegExp) => {
+  let arrayRespuestaOk: string[] = [];
+  arrayEtiquetasImg.forEach((src) => {
+    const match = src.match(patronSRC);
+    if (match) {
+      arrayRespuestaOk = [...arrayRespuestaOk, match[0]];
     }
-  );
+  });
 
-  return linkImagenesArray;
+  return arrayRespuestaOk;
+};
+
+export const extraerLinks = (arraySRC: string[], patronLink: RegExp) => {
+  let arrayLinks: string[] = [];
+  arraySRC.forEach((src) => {
+    const coincidencia = patronLink.exec(src);
+    if (coincidencia) {
+      const { link } = coincidencia.groups as any;
+      arrayLinks = [...arrayLinks, link];
+    }
+  });
+
+  return arrayLinks;
 };
